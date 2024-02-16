@@ -12,7 +12,7 @@ import (
 )
 
 func (c *UserStoreClient) CreateUser(ctx context.Context, user *user_store_entities_v1.UserCreate) (*user_store_entities_v1.User, error) {
-	_, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
 	req := connect.NewRequest(&pb.CreateUserRequest{
