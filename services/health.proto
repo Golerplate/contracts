@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+// buf:lint:ignore PACKAGE_DIRECTORY_MATCH
+package services.health;
+
+option go_package = "health";
+
+message HealthRequest {}
+
+message HealthResponse {}
+
+service HealthService {
+    rpc CheckHealth(HealthRequest) returns (HealthResponse);
+}
