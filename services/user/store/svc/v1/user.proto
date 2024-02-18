@@ -10,8 +10,8 @@ message User {
     google.protobuf.StringValue id = 1;
     google.protobuf.StringValue username = 2;
     google.protobuf.StringValue email = 3;
-    google.protobuf.BoolValue is_admin = 4;
-    google.protobuf.BoolValue is_banned = 5;
+    google.protobuf.BoolValue is_verified = 4;
+    google.protobuf.StringValue profile_picture = 5;
     google.protobuf.Timestamp created_at = 6;
     google.protobuf.Timestamp updated_at = 7;
 }
