@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package services.user.store.svc.v1;
+
+import "services/user/store/svc/v1/user.proto";
+
+option go_package = "user/store/svc/v1";
+
+service UserStoreSvc {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+    rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse);
+    rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse);
+    rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse);
+}
