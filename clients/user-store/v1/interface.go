@@ -8,4 +8,7 @@ import (
 
 type UserStoreSvc interface {
 	CreateUser(ctx context.Context, req *user_store_entities_v1.UserCreate) (*user_store_entities_v1.User, error)
+	GetUserByID(ctx context.Context, id string) (*user_store_entities_v1.User, error)
+	GetUserByUsername(ctx context.Context, username string) (*user_store_entities_v1.User, error)
+	GetUserByEmail(ctx context.Context, email string) (*user_store_entities_v1.User, error)
 }

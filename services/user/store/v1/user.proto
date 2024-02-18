@@ -25,3 +25,27 @@ message CreateUserRequest {
 message CreateUserResponse {
     User user = 1;
 }
+
+message GetUserByIDRequest {
+    google.protobuf.StringValue id = 1;
+}
+
+message GetUserByIDResponse {
+    User user = 1;
+}
+
+message GetUserByUsernameRequest {
+    google.protobuf.StringValue username = 1;
+}
+
+message GetUserByUsernameResponse {
+    User user = 1;
+}
+
+message GetUserByEmailRequest {
+    google.protobuf.StringValue email = 1;
+}
+
+message GetUserByEmailResponse {
+    User user = 1;
+}
