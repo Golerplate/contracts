@@ -1,9 +1,9 @@
-github.com/Golerplate/pkg v0.0.1 h1:NiSKK0epA/TCp8BsEcZ4Zb/s//baa3uMktjN9gXZYJQ=
-github.com/Golerplate/pkg v0.0.1/go.mod h1:7V9il3+ESzVTA0uasLuQoI4OGX0iQYBiWMojZNqdlgY=
 github.com/bufbuild/connect-go v1.10.0 h1:QAJ3G9A1OYQW2Jbk3DeoJbkCxuKArrvZgDt47mjdTbg=
 github.com/bufbuild/connect-go v1.10.0/go.mod h1:CAIePUgkDR5pAFaylSMtNK45ANQjp9JvpluG20rhpV8=
 github.com/coreos/go-systemd/v22 v22.5.0/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
+github.com/golerplate/pkg v0.0.9 h1:Jtqtj06qjceWuzvxlwiEgHrsV6YYXOqA8XoUnGBUipk=
+github.com/golerplate/pkg v0.0.9/go.mod h1:c5gmWPCyTCdZc9TxgZnGX/loEbrPDsZQyykm6nj2O2Y=
 github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
 github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/mattn/go-colorable v0.1.13 h1:fFA4WZxdEF4tXPZVKMLwD8oUnCTTo08duU7wxecdEvA=

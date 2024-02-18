@@ -3,7 +3,7 @@ package user_store_svc_v1
 import (
 	"context"
 
-	user_store_svc_v1_entities "github.com/Golerplate/contracts/clients/user-store-svc/v1/entities"
+	user_store_svc_v1_entities "github.com/golerplate/contracts/clients/user-store-svc/v1/entities"
 )
 
 //go:generate mockgen -source interface.go -destination mocks/mock_user_store_svc.go -package user_store_svc_v1_mocks

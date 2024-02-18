@@ -5,10 +5,11 @@ import (
 	"net/http"
 	"time"
 
-	user_store_svc_v1 "github.com/Golerplate/contracts/clients/user-store-svc/v1"
-	"github.com/Golerplate/contracts/generated/services/user/store/svc/v1/svcv1connect"
-	grpcmid "github.com/Golerplate/pkg/grpc/interceptors"
 	"github.com/bufbuild/connect-go"
+	"github.com/golerplate/contracts/generated/services/user/store/svc/v1/svcv1connect"
+	grpc_interceptors "github.com/golerplate/pkg/grpc/interceptors"
+
+	user_store_svc_v1 "github.com/golerplate/contracts/clients/user-store-svc/v1"
 )
 
 type UserStoreSvcClient struct {
@@ -16,7 +17,7 @@ type UserStoreSvcClient struct {
 }
 
 func NewUserStoreSvcClient(ctx context.Context, userStoreSvcClientURL string) user_store_svc_v1.UserStoreSvc {
-	iceptorsChain := grpcmid.ClientDefaultChain()
+	iceptorsChain := grpc_interceptors.ClientDefaultChain()
 
 	httpClient := &http.Client{
 		Transport: &http.Transport{

@@ -1,15 +1,15 @@
-module github.com/Golerplate/contracts
+module github.com/golerplate/contracts
 
 go 1.21.5
 
 require (
-	github.com/Golerplate/pkg v0.0.1
 	github.com/bufbuild/connect-go v1.10.0
 	go.uber.org/mock v0.4.0
 	google.golang.org/protobuf v1.32.0
 )
 
 require (
+	github.com/golerplate/pkg v0.0.9 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect

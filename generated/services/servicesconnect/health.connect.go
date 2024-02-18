@@ -8,7 +8,7 @@ package servicesconnect
 import (
 	context "context"
 	errors "errors"
-	services "github.com/Golerplate/contracts/generated/services"
+	services "github.com/golerplate/contracts/generated/services"
 	connect_go "github.com/bufbuild/connect-go"
 	http "net/http"
 	strings "strings"

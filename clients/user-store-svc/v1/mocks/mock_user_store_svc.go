@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	entities "github.com/Golerplate/contracts/clients/user-store-svc/v1/entities"
+	entities "github.com/golerplate/contracts/clients/user-store-svc/v1/entities"
 	gomock "go.uber.org/mock/gomock"
 )
 
