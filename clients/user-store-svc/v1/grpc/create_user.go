@@ -3,7 +3,7 @@ package user_store_svc_grpc_v1
 import (
 	"context"
 
-	user_store_svc_entities_v1 "github.com/Golerplate/contracts/clients/user-store-svc/v1/entities"
+	user_store_svc_v1_entities "github.com/Golerplate/contracts/clients/user-store-svc/v1/entities"
 	"github.com/Golerplate/pkg/grpc"
 	"github.com/bufbuild/connect-go"
 	"google.golang.org/protobuf/types/known/wrapperspb"
@@ -11,7 +11,7 @@ import (
 	pb "github.com/Golerplate/contracts/generated/services/user/store/svc/v1"
 )
 
-func (c *UserStoreSvcClient) CreateUser(ctx context.Context, user *user_store_svc_entities_v1.UserCreate) (*user_store_svc_entities_v1.User, error) {
+func (c *UserStoreSvcClient) CreateUser(ctx context.Context, user *user_store_svc_v1_entities.UserCreate) (*user_store_svc_v1_entities.User, error) {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
@@ -26,7 +26,7 @@ func (c *UserStoreSvcClient) CreateUser(ctx context.Context, user *user_store_sv
 		return nil, grpc.TranslateFromGRPCError(ctx, err)
 	}
 
-	return &user_store_svc_entities_v1.User{
+	return &user_store_svc_v1_entities.User{
 		ID:        resp.Msg.GetUser().Id.GetValue(),
 		Username:  resp.Msg.GetUser().Username.GetValue(),
 		Email:     resp.Msg.GetUser().Email.GetValue(),
