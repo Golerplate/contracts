@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package services.user.store.v1;
+package services.user.store.svc.v1;
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
@@ -34,18 +34,18 @@ message GetUserByIDResponse {
     User user = 1;
 }
 
-message GetUserByUsernameRequest {
-    google.protobuf.StringValue username = 1;
-}
-
-message GetUserByUsernameResponse {
-    User user = 1;
-}
-
 message GetUserByEmailRequest {
     google.protobuf.StringValue email = 1;
 }
 
 message GetUserByEmailResponse {
+    User user = 1;
+}
+
+message GetUserByUsernameRequest {
+    google.protobuf.StringValue username = 1;
+}
+
+message GetUserByUsernameResponse {
     User user = 1;
 }

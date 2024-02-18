@@ -1,4 +1,4 @@
-package user_store_entities_v1
+package user_store_svc_entities_v1
 
 import "time"
 

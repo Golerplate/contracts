@@ -1,32 +1,30 @@
-package user_store_grpc_v1
+package user_store_svc_grpc_v1
 
 import (
 	"context"
 
-	user_store_entities_v1 "github.com/Golerplate/contracts/clients/user-store/v1/entities"
+	user_store_svc_entities_v1 "github.com/Golerplate/contracts/clients/user-store-svc/v1/entities"
 	"github.com/Golerplate/pkg/grpc"
 	"github.com/bufbuild/connect-go"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 
-	pb "github.com/Golerplate/contracts/generated/services/user/store/v1"
+	pb "github.com/Golerplate/contracts/generated/services/user/store/svc/v1"
 )
 
-func (c *UserStoreClient) CreateUser(ctx context.Context, user *user_store_entities_v1.UserCreate) (*user_store_entities_v1.User, error) {
+func (c *UserStoreSvcClient) GetUserByUsername(ctx context.Context, username string) (*user_store_svc_entities_v1.User, error) {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	req := connect.NewRequest(&pb.CreateUserRequest{
-		Username: &wrapperspb.StringValue{Value: user.Username},
-		Email:    &wrapperspb.StringValue{Value: user.Email},
-		Password: &wrapperspb.StringValue{Value: user.Password},
+	req := connect.NewRequest(&pb.GetUserByUsernameRequest{
+		Username: &wrapperspb.StringValue{Value: username},
 	})
 
-	resp, err := c.client.CreateUser(ctx, req)
+	resp, err := c.client.GetUserByUsername(ctx, req)
 	if err != nil {
 		return nil, grpc.TranslateFromGRPCError(ctx, err)
 	}
 
-	return &user_store_entities_v1.User{
+	return &user_store_svc_entities_v1.User{
 		ID:        resp.Msg.GetUser().Id.GetValue(),
 		Username:  resp.Msg.GetUser().Username.GetValue(),
 		Email:     resp.Msg.GetUser().Email.GetValue(),
