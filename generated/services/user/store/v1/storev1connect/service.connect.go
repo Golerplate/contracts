@@ -21,8 +21,8 @@ import (
 const _ = connect_go.IsAtLeastVersion0_1_0
 
 const (
-	// UserStoreServiceName is the fully-qualified name of the UserStoreService service.
-	UserStoreServiceName = "services.user.store.v1.UserStoreService"
+	// UserStoreSvcName is the fully-qualified name of the UserStoreSvc service.
+	UserStoreSvcName = "services.user.store.v1.UserStoreSvc"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -33,74 +33,72 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// UserStoreServiceCreateUserProcedure is the fully-qualified name of the UserStoreService's
-	// CreateUser RPC.
-	UserStoreServiceCreateUserProcedure = "/services.user.store.v1.UserStoreService/CreateUser"
+	// UserStoreSvcCreateUserProcedure is the fully-qualified name of the UserStoreSvc's CreateUser RPC.
+	UserStoreSvcCreateUserProcedure = "/services.user.store.v1.UserStoreSvc/CreateUser"
 )
 
-// UserStoreServiceClient is a client for the services.user.store.v1.UserStoreService service.
-type UserStoreServiceClient interface {
+// UserStoreSvcClient is a client for the services.user.store.v1.UserStoreSvc service.
+type UserStoreSvcClient interface {
 	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 }
 
-// NewUserStoreServiceClient constructs a client for the services.user.store.v1.UserStoreService
-// service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
-// gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
-// the connect.WithGRPC() or connect.WithGRPCWeb() options.
+// NewUserStoreSvcClient constructs a client for the services.user.store.v1.UserStoreSvc service. By
+// default, it uses the Connect protocol with the binary Protobuf Codec, asks for gzipped responses,
+// and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply the
+// connect.WithGRPC() or connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewUserStoreServiceClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) UserStoreServiceClient {
+func NewUserStoreSvcClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) UserStoreSvcClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	return &userStoreServiceClient{
+	return &userStoreSvcClient{
 		createUser: connect_go.NewClient[v1.CreateUserRequest, v1.CreateUserResponse](
 			httpClient,
-			baseURL+UserStoreServiceCreateUserProcedure,
+			baseURL+UserStoreSvcCreateUserProcedure,
 			opts...,
 		),
 	}
 }
 
-// userStoreServiceClient implements UserStoreServiceClient.
-type userStoreServiceClient struct {
+// userStoreSvcClient implements UserStoreSvcClient.
+type userStoreSvcClient struct {
 	createUser *connect_go.Client[v1.CreateUserRequest, v1.CreateUserResponse]
 }
 
-// CreateUser calls services.user.store.v1.UserStoreService.CreateUser.
-func (c *userStoreServiceClient) CreateUser(ctx context.Context, req *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error) {
+// CreateUser calls services.user.store.v1.UserStoreSvc.CreateUser.
+func (c *userStoreSvcClient) CreateUser(ctx context.Context, req *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error) {
 	return c.createUser.CallUnary(ctx, req)
 }
 
-// UserStoreServiceHandler is an implementation of the services.user.store.v1.UserStoreService
-// service.
-type UserStoreServiceHandler interface {
+// UserStoreSvcHandler is an implementation of the services.user.store.v1.UserStoreSvc service.
+type UserStoreSvcHandler interface {
 	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 }
 
-// NewUserStoreServiceHandler builds an HTTP handler from the service implementation. It returns the
+// NewUserStoreSvcHandler builds an HTTP handler from the service implementation. It returns the
 // path on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewUserStoreServiceHandler(svc UserStoreServiceHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	userStoreServiceCreateUserHandler := connect_go.NewUnaryHandler(
-		UserStoreServiceCreateUserProcedure,
+func NewUserStoreSvcHandler(svc UserStoreSvcHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
+	userStoreSvcCreateUserHandler := connect_go.NewUnaryHandler(
+		UserStoreSvcCreateUserProcedure,
 		svc.CreateUser,
 		opts...,
 	)
-	return "/services.user.store.v1.UserStoreService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/services.user.store.v1.UserStoreSvc/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case UserStoreServiceCreateUserProcedure:
-			userStoreServiceCreateUserHandler.ServeHTTP(w, r)
+		case UserStoreSvcCreateUserProcedure:
+			userStoreSvcCreateUserHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedUserStoreServiceHandler returns CodeUnimplemented from all methods.
-type UnimplementedUserStoreServiceHandler struct{}
+// UnimplementedUserStoreSvcHandler returns CodeUnimplemented from all methods.
+type UnimplementedUserStoreSvcHandler struct{}
 
-func (UnimplementedUserStoreServiceHandler) CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.user.store.v1.UserStoreService.CreateUser is not implemented"))
+func (UnimplementedUserStoreSvcHandler) CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.user.store.v1.UserStoreSvc.CreateUser is not implemented"))
 }

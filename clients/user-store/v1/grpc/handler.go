@@ -12,7 +12,7 @@ import (
 )
 
 type UserStoreClient struct {
-	client storev1connect.UserStoreServiceClient
+	client storev1connect.UserStoreSvcClient
 }
 
 func NewUserStoreClient(ctx context.Context, userStoreClientURL string) user_store_v1.UserStoreSvc {
@@ -28,6 +28,6 @@ func NewUserStoreClient(ctx context.Context, userStoreClientURL string) user_sto
 	}
 
 	return &UserStoreClient{
-		client: storev1connect.NewUserStoreServiceClient(httpClient, userStoreClientURL, connect.WithInterceptors(iceptorsChain...)),
+		client: storev1connect.NewUserStoreSvcClient(httpClient, userStoreClientURL, connect.WithInterceptors(iceptorsChain...)),
 	}
 }

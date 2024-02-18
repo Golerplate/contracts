@@ -6,6 +6,6 @@ import "services/user/store/v1/user.proto";
 
 option go_package = "user/store/v1";
 
-service UserStoreService {
+service UserStoreSvc {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
 }
