@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package services.ptfm.image.svc.v1;
+
+import "services/ptfm/image/svc/v1/image.proto";
+
+option go_package = "ptfm/image/svc/v1";
+
+service PtfmImageSvc {
+    rpc CreateProfilePicture(CreateProfilePictureRequest) returns (CreateProfilePictureResponse);
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package services.ptfm.image.svc.v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+message CreateProfilePictureRequest {
+    google.protobuf.StringValue user_id = 1;
+}
+
+message CreateProfilePictureResponse {
+    google.protobuf.StringValue profile_picture_url = 1;
+}
