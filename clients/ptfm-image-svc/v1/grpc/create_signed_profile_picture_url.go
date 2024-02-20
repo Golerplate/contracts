@@ -10,15 +10,15 @@ import (
 	pb "github.com/golerplate/contracts/generated/services/ptfm/image/svc/v1"
 )
 
-func (c *PtfmImageSvcClient) CreateProfilePicture(ctx context.Context, userID string) (string, error) {
+func (c *PtfmImageSvcClient) CreateSignedProfilePictureUrl(ctx context.Context, userID string) (string, error) {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	req := connect.NewRequest(&pb.CreateProfilePictureRequest{
+	req := connect.NewRequest(&pb.CreateSignedProfilePictureUrlRequest{
 		UserId: wrapperspb.String(userID),
 	})
 
-	resp, err := c.client.CreateProfilePicture(ctx, req)
+	resp, err := c.client.CreateSignedProfilePictureUrl(ctx, req)
 	if err != nil {
 		return "", grpc.TranslateFromGRPCError(ctx, err)
 	}

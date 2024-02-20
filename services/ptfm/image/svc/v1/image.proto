@@ -6,10 +6,10 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
 
-message CreateProfilePictureRequest {
+message CreateSignedProfilePictureUrlRequest {
     google.protobuf.StringValue user_id = 1;
 }
 
-message CreateProfilePictureResponse {
+message CreateSignedProfilePictureUrlResponse {
     google.protobuf.StringValue profile_picture_url = 1;
 }

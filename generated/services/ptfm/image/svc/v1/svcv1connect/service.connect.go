@@ -33,14 +33,14 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// PtfmImageSvcCreateProfilePictureProcedure is the fully-qualified name of the PtfmImageSvc's
-	// CreateProfilePicture RPC.
-	PtfmImageSvcCreateProfilePictureProcedure = "/services.ptfm.image.svc.v1.PtfmImageSvc/CreateProfilePicture"
+	// PtfmImageSvcCreateSignedProfilePictureUrlProcedure is the fully-qualified name of the
+	// PtfmImageSvc's CreateSignedProfilePictureUrl RPC.
+	PtfmImageSvcCreateSignedProfilePictureUrlProcedure = "/services.ptfm.image.svc.v1.PtfmImageSvc/CreateSignedProfilePictureUrl"
 )
 
 // PtfmImageSvcClient is a client for the services.ptfm.image.svc.v1.PtfmImageSvc service.
 type PtfmImageSvcClient interface {
-	CreateProfilePicture(context.Context, *connect_go.Request[v1.CreateProfilePictureRequest]) (*connect_go.Response[v1.CreateProfilePictureResponse], error)
+	CreateSignedProfilePictureUrl(context.Context, *connect_go.Request[v1.CreateSignedProfilePictureUrlRequest]) (*connect_go.Response[v1.CreateSignedProfilePictureUrlResponse], error)
 }
 
 // NewPtfmImageSvcClient constructs a client for the services.ptfm.image.svc.v1.PtfmImageSvc
@@ -53,9 +53,9 @@ type PtfmImageSvcClient interface {
 func NewPtfmImageSvcClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) PtfmImageSvcClient {
 	baseURL = strings.TrimRight(baseURL, "/")
 	return &ptfmImageSvcClient{
-		createProfilePicture: connect_go.NewClient[v1.CreateProfilePictureRequest, v1.CreateProfilePictureResponse](
+		createSignedProfilePictureUrl: connect_go.NewClient[v1.CreateSignedProfilePictureUrlRequest, v1.CreateSignedProfilePictureUrlResponse](
 			httpClient,
-			baseURL+PtfmImageSvcCreateProfilePictureProcedure,
+			baseURL+PtfmImageSvcCreateSignedProfilePictureUrlProcedure,
 			opts...,
 		),
 	}
@@ -63,17 +63,18 @@ func NewPtfmImageSvcClient(httpClient connect_go.HTTPClient, baseURL string, opt
 
 // ptfmImageSvcClient implements PtfmImageSvcClient.
 type ptfmImageSvcClient struct {
-	createProfilePicture *connect_go.Client[v1.CreateProfilePictureRequest, v1.CreateProfilePictureResponse]
+	createSignedProfilePictureUrl *connect_go.Client[v1.CreateSignedProfilePictureUrlRequest, v1.CreateSignedProfilePictureUrlResponse]
 }
 
-// CreateProfilePicture calls services.ptfm.image.svc.v1.PtfmImageSvc.CreateProfilePicture.
-func (c *ptfmImageSvcClient) CreateProfilePicture(ctx context.Context, req *connect_go.Request[v1.CreateProfilePictureRequest]) (*connect_go.Response[v1.CreateProfilePictureResponse], error) {
-	return c.createProfilePicture.CallUnary(ctx, req)
+// CreateSignedProfilePictureUrl calls
+// services.ptfm.image.svc.v1.PtfmImageSvc.CreateSignedProfilePictureUrl.
+func (c *ptfmImageSvcClient) CreateSignedProfilePictureUrl(ctx context.Context, req *connect_go.Request[v1.CreateSignedProfilePictureUrlRequest]) (*connect_go.Response[v1.CreateSignedProfilePictureUrlResponse], error) {
+	return c.createSignedProfilePictureUrl.CallUnary(ctx, req)
 }
 
 // PtfmImageSvcHandler is an implementation of the services.ptfm.image.svc.v1.PtfmImageSvc service.
 type PtfmImageSvcHandler interface {
-	CreateProfilePicture(context.Context, *connect_go.Request[v1.CreateProfilePictureRequest]) (*connect_go.Response[v1.CreateProfilePictureResponse], error)
+	CreateSignedProfilePictureUrl(context.Context, *connect_go.Request[v1.CreateSignedProfilePictureUrlRequest]) (*connect_go.Response[v1.CreateSignedProfilePictureUrlResponse], error)
 }
 
 // NewPtfmImageSvcHandler builds an HTTP handler from the service implementation. It returns the
@@ -82,15 +83,15 @@ type PtfmImageSvcHandler interface {
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
 func NewPtfmImageSvcHandler(svc PtfmImageSvcHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	ptfmImageSvcCreateProfilePictureHandler := connect_go.NewUnaryHandler(
-		PtfmImageSvcCreateProfilePictureProcedure,
-		svc.CreateProfilePicture,
+	ptfmImageSvcCreateSignedProfilePictureUrlHandler := connect_go.NewUnaryHandler(
+		PtfmImageSvcCreateSignedProfilePictureUrlProcedure,
+		svc.CreateSignedProfilePictureUrl,
 		opts...,
 	)
 	return "/services.ptfm.image.svc.v1.PtfmImageSvc/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case PtfmImageSvcCreateProfilePictureProcedure:
-			ptfmImageSvcCreateProfilePictureHandler.ServeHTTP(w, r)
+		case PtfmImageSvcCreateSignedProfilePictureUrlProcedure:
+			ptfmImageSvcCreateSignedProfilePictureUrlHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -100,6 +101,6 @@ func NewPtfmImageSvcHandler(svc PtfmImageSvcHandler, opts ...connect_go.HandlerO
 // UnimplementedPtfmImageSvcHandler returns CodeUnimplemented from all methods.
 type UnimplementedPtfmImageSvcHandler struct{}
 
-func (UnimplementedPtfmImageSvcHandler) CreateProfilePicture(context.Context, *connect_go.Request[v1.CreateProfilePictureRequest]) (*connect_go.Response[v1.CreateProfilePictureResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.ptfm.image.svc.v1.PtfmImageSvc.CreateProfilePicture is not implemented"))
+func (UnimplementedPtfmImageSvcHandler) CreateSignedProfilePictureUrl(context.Context, *connect_go.Request[v1.CreateSignedProfilePictureUrlRequest]) (*connect_go.Response[v1.CreateSignedProfilePictureUrlResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.ptfm.image.svc.v1.PtfmImageSvc.CreateSignedProfilePictureUrl is not implemented"))
 }
