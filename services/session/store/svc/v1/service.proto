@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package services.session.store.svc.v1;
+
+import "services/session/store/svc/v1/session.proto";
+
+option go_package = "session/store/svc/v1";
+
+service SessionStoreSvc {
+    rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
+    rpc GetSessionByID(GetSessionByIDRequest) returns (GetSessionByIDResponse);
+}
