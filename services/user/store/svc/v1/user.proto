@@ -50,3 +50,13 @@ message GetUserByUsernameRequest {
 message GetUserByUsernameResponse {
     User user = 1;
 }
+
+message ChangePasswordRequest {
+    google.protobuf.StringValue user_id = 1;
+    google.protobuf.StringValue old_password = 2;
+    google.protobuf.StringValue new_password = 3;
+}
+
+message ChangePasswordResponse {
+    google.protobuf.Empty empty = 1;
+}

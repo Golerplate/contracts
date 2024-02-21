@@ -12,4 +12,5 @@ type UserStoreSvc interface {
 	GetUserByID(ctx context.Context, id string) (*user_store_svc_v1_entities.User, error)
 	GetUserByEmail(ctx context.Context, email string) (*user_store_svc_v1_entities.User, error)
 	GetUserByUsername(ctx context.Context, username string) (*user_store_svc_v1_entities.User, error)
+	ChangePassword(ctx context.Context, userID, oldPassword, newPassword string) error
 }
