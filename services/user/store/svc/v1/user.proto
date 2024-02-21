@@ -51,6 +51,15 @@ message GetUserByUsernameResponse {
     User user = 1;
 }
 
+message VerifyPasswordRequest {
+    google.protobuf.StringValue user_id = 1;
+    google.protobuf.StringValue password = 2;
+}
+
+message VerifyPasswordResponse {
+    google.protobuf.BoolValue is_valid = 1;
+}
+
 message ChangePasswordRequest {
     google.protobuf.StringValue user_id = 1;
     google.protobuf.StringValue old_password = 2;

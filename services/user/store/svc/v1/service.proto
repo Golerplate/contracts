@@ -11,5 +11,7 @@ service UserStoreSvc {
     rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse);
     rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse);
     rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse);
+
+    rpc VerifyPassword(VerifyPasswordRequest) returns (VerifyPasswordResponse);
     rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
 }
