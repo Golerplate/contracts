@@ -25,12 +25,13 @@ func (c *UserStoreSvcClient) GetUserByID(ctx context.Context, id string) (*user_
 	}
 
 	return &user_store_svc_v1_entities.User{
-		ID:             resp.Msg.GetUser().Id.GetValue(),
-		Username:       resp.Msg.GetUser().Username.GetValue(),
-		Email:          resp.Msg.GetUser().Email.GetValue(),
-		IsVerified:     resp.Msg.GetUser().IsVerified.GetValue(),
-		ProfilePicture: resp.Msg.GetUser().ProfilePicture.GetValue(),
-		CreatedAt:      resp.Msg.GetUser().CreatedAt.AsTime(),
-		UpdatedAt:      resp.Msg.GetUser().UpdatedAt.AsTime(),
+		ID:               resp.Msg.GetUser().Id.GetValue(),
+		Username:         resp.Msg.GetUser().Username.GetValue(),
+		Email:            resp.Msg.GetUser().Email.GetValue(),
+		IsAdmin:          resp.Msg.GetUser().IsAdmin.GetValue(),
+		IsBanned:         resp.Msg.GetUser().IsBanned.GetValue(),
+		HasVerifiedEmail: resp.Msg.GetUser().HasVerifiedEmail.GetValue(),
+		CreatedAt:        resp.Msg.GetUser().CreatedAt.AsTime(),
+		UpdatedAt:        resp.Msg.GetUser().UpdatedAt.AsTime(),
 	}, nil
 }

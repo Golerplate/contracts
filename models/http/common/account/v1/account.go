@@ -7,9 +7,10 @@ type Account struct {
 }
 
 type User struct {
-	ID             string    `json:"id"`
-	Username       string    `json:"username"`
-	IsVerified     bool      `json:"is_verified"`
-	ProfilePicture string    `json:"profile_picture"`
-	CreatedAt      time.Time `json:"created_at"`
+	ID               string    `json:"id"`
+	Username         string    `json:"username"`
+	IsAdmin          bool      `json:"is_admin"`
+	IsBanned         bool      `json:"is_banned"`
+	HasVerifiedEmail bool      `json:"has_verified_email"`
+	CreatedAt        time.Time `json:"created_at"`
 }

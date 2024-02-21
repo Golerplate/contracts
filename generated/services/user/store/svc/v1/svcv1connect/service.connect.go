@@ -7,8 +7,8 @@ package svcv1connect
 import (
 	context "context"
 	errors "errors"
-	v1 "github.com/golerplate/contracts/generated/services/user/store/svc/v1"
 	connect_go "github.com/bufbuild/connect-go"
+	v1 "github.com/golerplate/contracts/generated/services/user/store/svc/v1"
 	http "net/http"
 	strings "strings"
 )
