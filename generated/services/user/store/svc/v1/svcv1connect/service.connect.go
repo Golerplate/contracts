@@ -44,6 +44,9 @@ const (
 	// UserStoreSvcGetUserByUsernameProcedure is the fully-qualified name of the UserStoreSvc's
 	// GetUserByUsername RPC.
 	UserStoreSvcGetUserByUsernameProcedure = "/services.user.store.svc.v1.UserStoreSvc/GetUserByUsername"
+	// UserStoreSvcChangePasswordProcedure is the fully-qualified name of the UserStoreSvc's
+	// ChangePassword RPC.
+	UserStoreSvcChangePasswordProcedure = "/services.user.store.svc.v1.UserStoreSvc/ChangePassword"
 )
 
 // UserStoreSvcClient is a client for the services.user.store.svc.v1.UserStoreSvc service.
@@ -52,6 +55,7 @@ type UserStoreSvcClient interface {
 	GetUserByID(context.Context, *connect_go.Request[v1.GetUserByIDRequest]) (*connect_go.Response[v1.GetUserByIDResponse], error)
 	GetUserByEmail(context.Context, *connect_go.Request[v1.GetUserByEmailRequest]) (*connect_go.Response[v1.GetUserByEmailResponse], error)
 	GetUserByUsername(context.Context, *connect_go.Request[v1.GetUserByUsernameRequest]) (*connect_go.Response[v1.GetUserByUsernameResponse], error)
+	ChangePassword(context.Context, *connect_go.Request[v1.ChangePasswordRequest]) (*connect_go.Response[v1.ChangePasswordResponse], error)
 }
 
 // NewUserStoreSvcClient constructs a client for the services.user.store.svc.v1.UserStoreSvc
@@ -84,6 +88,11 @@ func NewUserStoreSvcClient(httpClient connect_go.HTTPClient, baseURL string, opt
 			baseURL+UserStoreSvcGetUserByUsernameProcedure,
 			opts...,
 		),
+		changePassword: connect_go.NewClient[v1.ChangePasswordRequest, v1.ChangePasswordResponse](
+			httpClient,
+			baseURL+UserStoreSvcChangePasswordProcedure,
+			opts...,
+		),
 	}
 }
 
@@ -93,6 +102,7 @@ type userStoreSvcClient struct {
 	getUserByID       *connect_go.Client[v1.GetUserByIDRequest, v1.GetUserByIDResponse]
 	getUserByEmail    *connect_go.Client[v1.GetUserByEmailRequest, v1.GetUserByEmailResponse]
 	getUserByUsername *connect_go.Client[v1.GetUserByUsernameRequest, v1.GetUserByUsernameResponse]
+	changePassword    *connect_go.Client[v1.ChangePasswordRequest, v1.ChangePasswordResponse]
 }
 
 // CreateUser calls services.user.store.svc.v1.UserStoreSvc.CreateUser.
@@ -115,12 +125,18 @@ func (c *userStoreSvcClient) GetUserByUsername(ctx context.Context, req *connect
 	return c.getUserByUsername.CallUnary(ctx, req)
 }
 
+// ChangePassword calls services.user.store.svc.v1.UserStoreSvc.ChangePassword.
+func (c *userStoreSvcClient) ChangePassword(ctx context.Context, req *connect_go.Request[v1.ChangePasswordRequest]) (*connect_go.Response[v1.ChangePasswordResponse], error) {
+	return c.changePassword.CallUnary(ctx, req)
+}
+
 // UserStoreSvcHandler is an implementation of the services.user.store.svc.v1.UserStoreSvc service.
 type UserStoreSvcHandler interface {
 	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 	GetUserByID(context.Context, *connect_go.Request[v1.GetUserByIDRequest]) (*connect_go.Response[v1.GetUserByIDResponse], error)
 	GetUserByEmail(context.Context, *connect_go.Request[v1.GetUserByEmailRequest]) (*connect_go.Response[v1.GetUserByEmailResponse], error)
 	GetUserByUsername(context.Context, *connect_go.Request[v1.GetUserByUsernameRequest]) (*connect_go.Response[v1.GetUserByUsernameResponse], error)
+	ChangePassword(context.Context, *connect_go.Request[v1.ChangePasswordRequest]) (*connect_go.Response[v1.ChangePasswordResponse], error)
 }
 
 // NewUserStoreSvcHandler builds an HTTP handler from the service implementation. It returns the
@@ -149,6 +165,11 @@ func NewUserStoreSvcHandler(svc UserStoreSvcHandler, opts ...connect_go.HandlerO
 		svc.GetUserByUsername,
 		opts...,
 	)
+	userStoreSvcChangePasswordHandler := connect_go.NewUnaryHandler(
+		UserStoreSvcChangePasswordProcedure,
+		svc.ChangePassword,
+		opts...,
+	)
 	return "/services.user.store.svc.v1.UserStoreSvc/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case UserStoreSvcCreateUserProcedure:
@@ -159,6 +180,8 @@ func NewUserStoreSvcHandler(svc UserStoreSvcHandler, opts ...connect_go.HandlerO
 			userStoreSvcGetUserByEmailHandler.ServeHTTP(w, r)
 		case UserStoreSvcGetUserByUsernameProcedure:
 			userStoreSvcGetUserByUsernameHandler.ServeHTTP(w, r)
+		case UserStoreSvcChangePasswordProcedure:
+			userStoreSvcChangePasswordHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -182,4 +205,8 @@ func (UnimplementedUserStoreSvcHandler) GetUserByEmail(context.Context, *connect
 
 func (UnimplementedUserStoreSvcHandler) GetUserByUsername(context.Context, *connect_go.Request[v1.GetUserByUsernameRequest]) (*connect_go.Response[v1.GetUserByUsernameResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.user.store.svc.v1.UserStoreSvc.GetUserByUsername is not implemented"))
+}
+
+func (UnimplementedUserStoreSvcHandler) ChangePassword(context.Context, *connect_go.Request[v1.ChangePasswordRequest]) (*connect_go.Response[v1.ChangePasswordResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.user.store.svc.v1.UserStoreSvc.ChangePassword is not implemented"))
 }

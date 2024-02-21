@@ -40,6 +40,20 @@ func (m *MockUserStoreSvc) EXPECT() *MockUserStoreSvcMockRecorder {
 	return m.recorder
 }
 
+// ChangePassword mocks base method.
+func (m *MockUserStoreSvc) ChangePassword(ctx context.Context, userID, oldPassword, newPassword string) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ChangePassword", ctx, userID, oldPassword, newPassword)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// ChangePassword indicates an expected call of ChangePassword.
+func (mr *MockUserStoreSvcMockRecorder) ChangePassword(ctx, userID, oldPassword, newPassword any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ChangePassword", reflect.TypeOf((*MockUserStoreSvc)(nil).ChangePassword), ctx, userID, oldPassword, newPassword)
+}
+
 // CreateUser mocks base method.
 func (m *MockUserStoreSvc) CreateUser(ctx context.Context, req *user_store_svc_v1_entities.UserCreate) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
