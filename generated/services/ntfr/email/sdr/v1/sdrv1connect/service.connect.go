@@ -21,8 +21,8 @@ import (
 const _ = connect_go.IsAtLeastVersion0_1_0
 
 const (
-	// NotifierEmailSdrName is the fully-qualified name of the NotifierEmailSdr service.
-	NotifierEmailSdrName = "services.ntfr.email.sdr.v1.NotifierEmailSdr"
+	// NtfrEmailSdrName is the fully-qualified name of the NtfrEmailSdr service.
+	NtfrEmailSdrName = "services.ntfr.email.sdr.v1.NtfrEmailSdr"
 )
 
 // These constants are the fully-qualified names of the RPCs defined in this package. They're
@@ -33,101 +33,100 @@ const (
 // reflection-formatted method names, remove the leading slash and convert the remaining slash to a
 // period.
 const (
-	// NotifierEmailSdrSendVerificationEmailProcedure is the fully-qualified name of the
-	// NotifierEmailSdr's SendVerificationEmail RPC.
-	NotifierEmailSdrSendVerificationEmailProcedure = "/services.ntfr.email.sdr.v1.NotifierEmailSdr/SendVerificationEmail"
-	// NotifierEmailSdrSendResetPasswordEmailProcedure is the fully-qualified name of the
-	// NotifierEmailSdr's SendResetPasswordEmail RPC.
-	NotifierEmailSdrSendResetPasswordEmailProcedure = "/services.ntfr.email.sdr.v1.NotifierEmailSdr/SendResetPasswordEmail"
+	// NtfrEmailSdrSendVerificationEmailProcedure is the fully-qualified name of the NtfrEmailSdr's
+	// SendVerificationEmail RPC.
+	NtfrEmailSdrSendVerificationEmailProcedure = "/services.ntfr.email.sdr.v1.NtfrEmailSdr/SendVerificationEmail"
+	// NtfrEmailSdrSendResetPasswordEmailProcedure is the fully-qualified name of the NtfrEmailSdr's
+	// SendResetPasswordEmail RPC.
+	NtfrEmailSdrSendResetPasswordEmailProcedure = "/services.ntfr.email.sdr.v1.NtfrEmailSdr/SendResetPasswordEmail"
 )
 
-// NotifierEmailSdrClient is a client for the services.ntfr.email.sdr.v1.NotifierEmailSdr service.
-type NotifierEmailSdrClient interface {
+// NtfrEmailSdrClient is a client for the services.ntfr.email.sdr.v1.NtfrEmailSdr service.
+type NtfrEmailSdrClient interface {
 	SendVerificationEmail(context.Context, *connect_go.Request[v1.SendVerificationEmailRequest]) (*connect_go.Response[v1.SendVerificationEmailResponse], error)
 	SendResetPasswordEmail(context.Context, *connect_go.Request[v1.SendResetPasswordEmailRequest]) (*connect_go.Response[v1.SendResetPasswordEmailResponse], error)
 }
 
-// NewNotifierEmailSdrClient constructs a client for the services.ntfr.email.sdr.v1.NotifierEmailSdr
+// NewNtfrEmailSdrClient constructs a client for the services.ntfr.email.sdr.v1.NtfrEmailSdr
 // service. By default, it uses the Connect protocol with the binary Protobuf Codec, asks for
 // gzipped responses, and sends uncompressed requests. To use the gRPC or gRPC-Web protocols, supply
 // the connect.WithGRPC() or connect.WithGRPCWeb() options.
 //
 // The URL supplied here should be the base URL for the Connect or gRPC server (for example,
 // http://api.acme.com or https://acme.com/grpc).
-func NewNotifierEmailSdrClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) NotifierEmailSdrClient {
+func NewNtfrEmailSdrClient(httpClient connect_go.HTTPClient, baseURL string, opts ...connect_go.ClientOption) NtfrEmailSdrClient {
 	baseURL = strings.TrimRight(baseURL, "/")
-	return &notifierEmailSdrClient{
+	return &ntfrEmailSdrClient{
 		sendVerificationEmail: connect_go.NewClient[v1.SendVerificationEmailRequest, v1.SendVerificationEmailResponse](
 			httpClient,
-			baseURL+NotifierEmailSdrSendVerificationEmailProcedure,
+			baseURL+NtfrEmailSdrSendVerificationEmailProcedure,
 			opts...,
 		),
 		sendResetPasswordEmail: connect_go.NewClient[v1.SendResetPasswordEmailRequest, v1.SendResetPasswordEmailResponse](
 			httpClient,
-			baseURL+NotifierEmailSdrSendResetPasswordEmailProcedure,
+			baseURL+NtfrEmailSdrSendResetPasswordEmailProcedure,
 			opts...,
 		),
 	}
 }
 
-// notifierEmailSdrClient implements NotifierEmailSdrClient.
-type notifierEmailSdrClient struct {
+// ntfrEmailSdrClient implements NtfrEmailSdrClient.
+type ntfrEmailSdrClient struct {
 	sendVerificationEmail  *connect_go.Client[v1.SendVerificationEmailRequest, v1.SendVerificationEmailResponse]
 	sendResetPasswordEmail *connect_go.Client[v1.SendResetPasswordEmailRequest, v1.SendResetPasswordEmailResponse]
 }
 
-// SendVerificationEmail calls services.ntfr.email.sdr.v1.NotifierEmailSdr.SendVerificationEmail.
-func (c *notifierEmailSdrClient) SendVerificationEmail(ctx context.Context, req *connect_go.Request[v1.SendVerificationEmailRequest]) (*connect_go.Response[v1.SendVerificationEmailResponse], error) {
+// SendVerificationEmail calls services.ntfr.email.sdr.v1.NtfrEmailSdr.SendVerificationEmail.
+func (c *ntfrEmailSdrClient) SendVerificationEmail(ctx context.Context, req *connect_go.Request[v1.SendVerificationEmailRequest]) (*connect_go.Response[v1.SendVerificationEmailResponse], error) {
 	return c.sendVerificationEmail.CallUnary(ctx, req)
 }
 
-// SendResetPasswordEmail calls services.ntfr.email.sdr.v1.NotifierEmailSdr.SendResetPasswordEmail.
-func (c *notifierEmailSdrClient) SendResetPasswordEmail(ctx context.Context, req *connect_go.Request[v1.SendResetPasswordEmailRequest]) (*connect_go.Response[v1.SendResetPasswordEmailResponse], error) {
+// SendResetPasswordEmail calls services.ntfr.email.sdr.v1.NtfrEmailSdr.SendResetPasswordEmail.
+func (c *ntfrEmailSdrClient) SendResetPasswordEmail(ctx context.Context, req *connect_go.Request[v1.SendResetPasswordEmailRequest]) (*connect_go.Response[v1.SendResetPasswordEmailResponse], error) {
 	return c.sendResetPasswordEmail.CallUnary(ctx, req)
 }
 
-// NotifierEmailSdrHandler is an implementation of the services.ntfr.email.sdr.v1.NotifierEmailSdr
-// service.
-type NotifierEmailSdrHandler interface {
+// NtfrEmailSdrHandler is an implementation of the services.ntfr.email.sdr.v1.NtfrEmailSdr service.
+type NtfrEmailSdrHandler interface {
 	SendVerificationEmail(context.Context, *connect_go.Request[v1.SendVerificationEmailRequest]) (*connect_go.Response[v1.SendVerificationEmailResponse], error)
 	SendResetPasswordEmail(context.Context, *connect_go.Request[v1.SendResetPasswordEmailRequest]) (*connect_go.Response[v1.SendResetPasswordEmailResponse], error)
 }
 
-// NewNotifierEmailSdrHandler builds an HTTP handler from the service implementation. It returns the
+// NewNtfrEmailSdrHandler builds an HTTP handler from the service implementation. It returns the
 // path on which to mount the handler and the handler itself.
 //
 // By default, handlers support the Connect, gRPC, and gRPC-Web protocols with the binary Protobuf
 // and JSON codecs. They also support gzip compression.
-func NewNotifierEmailSdrHandler(svc NotifierEmailSdrHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
-	notifierEmailSdrSendVerificationEmailHandler := connect_go.NewUnaryHandler(
-		NotifierEmailSdrSendVerificationEmailProcedure,
+func NewNtfrEmailSdrHandler(svc NtfrEmailSdrHandler, opts ...connect_go.HandlerOption) (string, http.Handler) {
+	ntfrEmailSdrSendVerificationEmailHandler := connect_go.NewUnaryHandler(
+		NtfrEmailSdrSendVerificationEmailProcedure,
 		svc.SendVerificationEmail,
 		opts...,
 	)
-	notifierEmailSdrSendResetPasswordEmailHandler := connect_go.NewUnaryHandler(
-		NotifierEmailSdrSendResetPasswordEmailProcedure,
+	ntfrEmailSdrSendResetPasswordEmailHandler := connect_go.NewUnaryHandler(
+		NtfrEmailSdrSendResetPasswordEmailProcedure,
 		svc.SendResetPasswordEmail,
 		opts...,
 	)
-	return "/services.ntfr.email.sdr.v1.NotifierEmailSdr/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	return "/services.ntfr.email.sdr.v1.NtfrEmailSdr/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
-		case NotifierEmailSdrSendVerificationEmailProcedure:
-			notifierEmailSdrSendVerificationEmailHandler.ServeHTTP(w, r)
-		case NotifierEmailSdrSendResetPasswordEmailProcedure:
-			notifierEmailSdrSendResetPasswordEmailHandler.ServeHTTP(w, r)
+		case NtfrEmailSdrSendVerificationEmailProcedure:
+			ntfrEmailSdrSendVerificationEmailHandler.ServeHTTP(w, r)
+		case NtfrEmailSdrSendResetPasswordEmailProcedure:
+			ntfrEmailSdrSendResetPasswordEmailHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
 	})
 }
 
-// UnimplementedNotifierEmailSdrHandler returns CodeUnimplemented from all methods.
-type UnimplementedNotifierEmailSdrHandler struct{}
+// UnimplementedNtfrEmailSdrHandler returns CodeUnimplemented from all methods.
+type UnimplementedNtfrEmailSdrHandler struct{}
 
-func (UnimplementedNotifierEmailSdrHandler) SendVerificationEmail(context.Context, *connect_go.Request[v1.SendVerificationEmailRequest]) (*connect_go.Response[v1.SendVerificationEmailResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.ntfr.email.sdr.v1.NotifierEmailSdr.SendVerificationEmail is not implemented"))
+func (UnimplementedNtfrEmailSdrHandler) SendVerificationEmail(context.Context, *connect_go.Request[v1.SendVerificationEmailRequest]) (*connect_go.Response[v1.SendVerificationEmailResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.ntfr.email.sdr.v1.NtfrEmailSdr.SendVerificationEmail is not implemented"))
 }
 
-func (UnimplementedNotifierEmailSdrHandler) SendResetPasswordEmail(context.Context, *connect_go.Request[v1.SendResetPasswordEmailRequest]) (*connect_go.Response[v1.SendResetPasswordEmailResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.ntfr.email.sdr.v1.NotifierEmailSdr.SendResetPasswordEmail is not implemented"))
+func (UnimplementedNtfrEmailSdrHandler) SendResetPasswordEmail(context.Context, *connect_go.Request[v1.SendResetPasswordEmailRequest]) (*connect_go.Response[v1.SendResetPasswordEmailResponse], error) {
+	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.ntfr.email.sdr.v1.NtfrEmailSdr.SendResetPasswordEmail is not implemented"))
 }

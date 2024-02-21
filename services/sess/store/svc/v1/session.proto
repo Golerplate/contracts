@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package services.session.store.svc.v1;
+package services.sess.store.svc.v1;
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/timestamp.proto";

@@ -1,4 +1,4 @@
-package session_store_svc_v1_entities
+package sess_store_svc_v1_entities
 
 import "time"
 

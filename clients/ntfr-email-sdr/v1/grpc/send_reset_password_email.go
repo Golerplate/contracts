@@ -1,4 +1,4 @@
-package notifier_email_sdr_grpc_v1
+package ntfr_email_sdr_grpc_v1
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 	pb "github.com/golerplate/contracts/generated/services/ntfr/email/sdr/v1"
 )
 
-func (c *NotifierEmailSdrClient) SendResetPasswordEmail(ctx context.Context, email string, username string, token string) error {
+func (c *NtfrEmailSdrClient) SendResetPasswordEmail(ctx context.Context, email string, username string, token string) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 

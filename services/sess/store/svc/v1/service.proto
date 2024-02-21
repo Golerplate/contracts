@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package services.session.store.svc.v1;
+package services.sess.store.svc.v1;
 
-import "services/session/store/svc/v1/session.proto";
+import "services/sess/store/svc/v1/session.proto";
 
-option go_package = "session/store/svc/v1";
+option go_package = "sess/store/svc/v1";
 
-service SessionStoreSvc {
+service SessStoreSvc {
     rpc CreateSession(CreateSessionRequest) returns (CreateSessionResponse);
     rpc GetSessionByID(GetSessionByIDRequest) returns (GetSessionByIDResponse);
 }

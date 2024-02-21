@@ -6,7 +6,7 @@ import "services/ntfr/email/sdr/v1/email.proto";
 
 option go_package = "ntfr/email/sdr/v1";
 
-service NotifierEmailSdr {
+service NtfrEmailSdr {
     rpc SendVerificationEmail(SendVerificationEmailRequest) returns (SendVerificationEmailResponse);
     rpc SendResetPasswordEmail(SendResetPasswordEmailRequest) returns (SendResetPasswordEmailResponse);
 }
