@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	entities "github.com/golerplate/contracts/clients/user-store-svc/v1/entities"
+	user_store_svc_v1_entities "github.com/golerplate/contracts/clients/user-store-svc/v1/entities"
 	gomock "go.uber.org/mock/gomock"
 )
 
@@ -41,10 +41,10 @@ func (m *MockUserStoreSvc) EXPECT() *MockUserStoreSvcMockRecorder {
 }
 
 // CreateUser mocks base method.
-func (m *MockUserStoreSvc) CreateUser(ctx context.Context, req *entities.UserCreate) (*entities.User, error) {
+func (m *MockUserStoreSvc) CreateUser(ctx context.Context, req *user_store_svc_v1_entities.UserCreate) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "CreateUser", ctx, req)
-	ret0, _ := ret[0].(*entities.User)
+	ret0, _ := ret[0].(*user_store_svc_v1_entities.User)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -56,10 +56,10 @@ func (mr *MockUserStoreSvcMockRecorder) CreateUser(ctx, req any) *gomock.Call {
 }
 
 // GetUserByEmail mocks base method.
-func (m *MockUserStoreSvc) GetUserByEmail(ctx context.Context, email string) (*entities.User, error) {
+func (m *MockUserStoreSvc) GetUserByEmail(ctx context.Context, email string) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetUserByEmail", ctx, email)
-	ret0, _ := ret[0].(*entities.User)
+	ret0, _ := ret[0].(*user_store_svc_v1_entities.User)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -71,10 +71,10 @@ func (mr *MockUserStoreSvcMockRecorder) GetUserByEmail(ctx, email any) *gomock.C
 }
 
 // GetUserByID mocks base method.
-func (m *MockUserStoreSvc) GetUserByID(ctx context.Context, id string) (*entities.User, error) {
+func (m *MockUserStoreSvc) GetUserByID(ctx context.Context, id string) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetUserByID", ctx, id)
-	ret0, _ := ret[0].(*entities.User)
+	ret0, _ := ret[0].(*user_store_svc_v1_entities.User)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -86,10 +86,10 @@ func (mr *MockUserStoreSvcMockRecorder) GetUserByID(ctx, id any) *gomock.Call {
 }
 
 // GetUserByUsername mocks base method.
-func (m *MockUserStoreSvc) GetUserByUsername(ctx context.Context, username string) (*entities.User, error) {
+func (m *MockUserStoreSvc) GetUserByUsername(ctx context.Context, username string) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetUserByUsername", ctx, username)
-	ret0, _ := ret[0].(*entities.User)
+	ret0, _ := ret[0].(*user_store_svc_v1_entities.User)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
