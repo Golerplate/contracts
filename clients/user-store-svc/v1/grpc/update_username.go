@@ -11,16 +11,16 @@ import (
 	pb "github.com/golerplate/contracts/generated/services/user/store/svc/v1"
 )
 
-func (c *UserStoreSvcClient) CreateUser(ctx context.Context, user *user_store_svc_v1_entities.UserCreate) (*user_store_svc_v1_entities.User, error) {
+func (c *UserStoreSvcClient) UpdateUsername(ctx context.Context, id string, username string) (*user_store_svc_v1_entities.User, error) {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
 
-	req := connect.NewRequest(&pb.CreateUserRequest{
-		ExternalId: &wrapperspb.StringValue{Value: user.ExternalID},
-		Email:      &wrapperspb.StringValue{Value: user.Email},
+	req := connect.NewRequest(&pb.UpdateUsernameRequest{
+		Id:       &wrapperspb.StringValue{Value: id},
+		Username: &wrapperspb.StringValue{Value: username},
 	})
 
-	resp, err := c.client.CreateUser(ctx, req)
+	resp, err := c.client.UpdateUsername(ctx, req)
 	if err != nil {
 		return nil, grpc.TranslateFromGRPCError(ctx, err)
 	}

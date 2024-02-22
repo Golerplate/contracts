@@ -8,5 +8,4 @@ type PrivateUser struct {
 	ID       string `json:"id"`
 	Username string `json:"username"`
 	Email    string `json:"email"`
-	IsAdmin  bool   `json:"is_admin"`
 }
