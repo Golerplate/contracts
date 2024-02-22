@@ -40,20 +40,6 @@ func (m *MockUserStoreSvc) EXPECT() *MockUserStoreSvcMockRecorder {
 	return m.recorder
 }
 
-// ChangePassword mocks base method.
-func (m *MockUserStoreSvc) ChangePassword(ctx context.Context, userID, oldPassword, newPassword string) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ChangePassword", ctx, userID, oldPassword, newPassword)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// ChangePassword indicates an expected call of ChangePassword.
-func (mr *MockUserStoreSvcMockRecorder) ChangePassword(ctx, userID, oldPassword, newPassword any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ChangePassword", reflect.TypeOf((*MockUserStoreSvc)(nil).ChangePassword), ctx, userID, oldPassword, newPassword)
-}
-
 // CreateUser mocks base method.
 func (m *MockUserStoreSvc) CreateUser(ctx context.Context, req *user_store_svc_v1_entities.UserCreate) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
@@ -84,6 +70,21 @@ func (mr *MockUserStoreSvcMockRecorder) GetUserByEmail(ctx, email any) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByEmail", reflect.TypeOf((*MockUserStoreSvc)(nil).GetUserByEmail), ctx, email)
 }
 
+// GetUserByExternalID mocks base method.
+func (m *MockUserStoreSvc) GetUserByExternalID(ctx context.Context, externalID string) (*user_store_svc_v1_entities.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetUserByExternalID", ctx, externalID)
+	ret0, _ := ret[0].(*user_store_svc_v1_entities.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetUserByExternalID indicates an expected call of GetUserByExternalID.
+func (mr *MockUserStoreSvcMockRecorder) GetUserByExternalID(ctx, externalID any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByExternalID", reflect.TypeOf((*MockUserStoreSvc)(nil).GetUserByExternalID), ctx, externalID)
+}
+
 // GetUserByID mocks base method.
 func (m *MockUserStoreSvc) GetUserByID(ctx context.Context, id string) (*user_store_svc_v1_entities.User, error) {
 	m.ctrl.T.Helper()
@@ -112,4 +113,19 @@ func (m *MockUserStoreSvc) GetUserByUsername(ctx context.Context, username strin
 func (mr *MockUserStoreSvcMockRecorder) GetUserByUsername(ctx, username any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUserByUsername", reflect.TypeOf((*MockUserStoreSvc)(nil).GetUserByUsername), ctx, username)
+}
+
+// UpdateUsername mocks base method.
+func (m *MockUserStoreSvc) UpdateUsername(ctx context.Context, id, username string) (*user_store_svc_v1_entities.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "UpdateUsername", ctx, id, username)
+	ret0, _ := ret[0].(*user_store_svc_v1_entities.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// UpdateUsername indicates an expected call of UpdateUsername.
+func (mr *MockUserStoreSvcMockRecorder) UpdateUsername(ctx, id, username any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateUsername", reflect.TypeOf((*MockUserStoreSvc)(nil).UpdateUsername), ctx, id, username)
 }
