@@ -16,8 +16,8 @@ func (c *UserStoreSvcClient) CreateUser(ctx context.Context, user *user_store_sv
 	defer cancel()
 
 	req := connect.NewRequest(&pb.CreateUserRequest{
-		ExternalId: &wrapperspb.StringValue{Value: user.ExternalID},
-		Email:      &wrapperspb.StringValue{Value: user.Email},
+		Username: &wrapperspb.StringValue{Value: user.Username},
+		Email:    &wrapperspb.StringValue{Value: user.Email},
 	})
 
 	resp, err := c.client.CreateUser(ctx, req)
@@ -26,11 +26,10 @@ func (c *UserStoreSvcClient) CreateUser(ctx context.Context, user *user_store_sv
 	}
 
 	return &user_store_svc_v1_entities.User{
-		ID:         resp.Msg.GetUser().Id.GetValue(),
-		ExternalID: resp.Msg.GetUser().ExternalId.GetValue(),
-		Username:   resp.Msg.GetUser().Username.GetValue(),
-		Email:      resp.Msg.GetUser().Email.GetValue(),
-		CreatedAt:  resp.Msg.GetUser().CreatedAt.AsTime(),
-		UpdatedAt:  resp.Msg.GetUser().UpdatedAt.AsTime(),
+		ID:        resp.Msg.GetUser().Id.GetValue(),
+		Username:  resp.Msg.GetUser().Username.GetValue(),
+		Email:     resp.Msg.GetUser().Email.GetValue(),
+		CreatedAt: resp.Msg.GetUser().CreatedAt.AsTime(),
+		UpdatedAt: resp.Msg.GetUser().UpdatedAt.AsTime(),
 	}, nil
 }

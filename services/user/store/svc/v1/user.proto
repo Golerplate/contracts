@@ -8,15 +8,14 @@ import "google/protobuf/empty.proto";
 
 message User {
     google.protobuf.StringValue id = 1;
-    google.protobuf.StringValue external_id = 2;
-    google.protobuf.StringValue username = 3;
-    google.protobuf.StringValue email = 4;
-    google.protobuf.Timestamp created_at = 5;
-    google.protobuf.Timestamp updated_at = 6;
+    google.protobuf.StringValue username = 2;
+    google.protobuf.StringValue email = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
 }
 
 message CreateUserRequest {
-    google.protobuf.StringValue external_id = 1;
+    google.protobuf.StringValue username = 1;
     google.protobuf.StringValue email = 2;
 }
 
@@ -38,14 +37,6 @@ message GetUserByIDRequest {
 }
 
 message GetUserByIDResponse {
-    User user = 1;
-}
-
-message GetUserByExternalIDRequest {
-    google.protobuf.StringValue external_id = 1;
-}
-
-message GetUserByExternalIDResponse {
     User user = 1;
 }
 

@@ -41,9 +41,6 @@ const (
 	// UserStoreSvcGetUserByIDProcedure is the fully-qualified name of the UserStoreSvc's GetUserByID
 	// RPC.
 	UserStoreSvcGetUserByIDProcedure = "/services.user.store.svc.v1.UserStoreSvc/GetUserByID"
-	// UserStoreSvcGetUserByExternalIDProcedure is the fully-qualified name of the UserStoreSvc's
-	// GetUserByExternalID RPC.
-	UserStoreSvcGetUserByExternalIDProcedure = "/services.user.store.svc.v1.UserStoreSvc/GetUserByExternalID"
 	// UserStoreSvcGetUserByEmailProcedure is the fully-qualified name of the UserStoreSvc's
 	// GetUserByEmail RPC.
 	UserStoreSvcGetUserByEmailProcedure = "/services.user.store.svc.v1.UserStoreSvc/GetUserByEmail"
@@ -57,7 +54,6 @@ type UserStoreSvcClient interface {
 	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 	UpdateUsername(context.Context, *connect_go.Request[v1.UpdateUsernameRequest]) (*connect_go.Response[v1.UpdateUsernameResponse], error)
 	GetUserByID(context.Context, *connect_go.Request[v1.GetUserByIDRequest]) (*connect_go.Response[v1.GetUserByIDResponse], error)
-	GetUserByExternalID(context.Context, *connect_go.Request[v1.GetUserByExternalIDRequest]) (*connect_go.Response[v1.GetUserByExternalIDResponse], error)
 	GetUserByEmail(context.Context, *connect_go.Request[v1.GetUserByEmailRequest]) (*connect_go.Response[v1.GetUserByEmailResponse], error)
 	GetUserByUsername(context.Context, *connect_go.Request[v1.GetUserByUsernameRequest]) (*connect_go.Response[v1.GetUserByUsernameResponse], error)
 }
@@ -87,11 +83,6 @@ func NewUserStoreSvcClient(httpClient connect_go.HTTPClient, baseURL string, opt
 			baseURL+UserStoreSvcGetUserByIDProcedure,
 			opts...,
 		),
-		getUserByExternalID: connect_go.NewClient[v1.GetUserByExternalIDRequest, v1.GetUserByExternalIDResponse](
-			httpClient,
-			baseURL+UserStoreSvcGetUserByExternalIDProcedure,
-			opts...,
-		),
 		getUserByEmail: connect_go.NewClient[v1.GetUserByEmailRequest, v1.GetUserByEmailResponse](
 			httpClient,
 			baseURL+UserStoreSvcGetUserByEmailProcedure,
@@ -107,12 +98,11 @@ func NewUserStoreSvcClient(httpClient connect_go.HTTPClient, baseURL string, opt
 
 // userStoreSvcClient implements UserStoreSvcClient.
 type userStoreSvcClient struct {
-	createUser          *connect_go.Client[v1.CreateUserRequest, v1.CreateUserResponse]
-	updateUsername      *connect_go.Client[v1.UpdateUsernameRequest, v1.UpdateUsernameResponse]
-	getUserByID         *connect_go.Client[v1.GetUserByIDRequest, v1.GetUserByIDResponse]
-	getUserByExternalID *connect_go.Client[v1.GetUserByExternalIDRequest, v1.GetUserByExternalIDResponse]
-	getUserByEmail      *connect_go.Client[v1.GetUserByEmailRequest, v1.GetUserByEmailResponse]
-	getUserByUsername   *connect_go.Client[v1.GetUserByUsernameRequest, v1.GetUserByUsernameResponse]
+	createUser        *connect_go.Client[v1.CreateUserRequest, v1.CreateUserResponse]
+	updateUsername    *connect_go.Client[v1.UpdateUsernameRequest, v1.UpdateUsernameResponse]
+	getUserByID       *connect_go.Client[v1.GetUserByIDRequest, v1.GetUserByIDResponse]
+	getUserByEmail    *connect_go.Client[v1.GetUserByEmailRequest, v1.GetUserByEmailResponse]
+	getUserByUsername *connect_go.Client[v1.GetUserByUsernameRequest, v1.GetUserByUsernameResponse]
 }
 
 // CreateUser calls services.user.store.svc.v1.UserStoreSvc.CreateUser.
@@ -130,11 +120,6 @@ func (c *userStoreSvcClient) GetUserByID(ctx context.Context, req *connect_go.Re
 	return c.getUserByID.CallUnary(ctx, req)
 }
 
-// GetUserByExternalID calls services.user.store.svc.v1.UserStoreSvc.GetUserByExternalID.
-func (c *userStoreSvcClient) GetUserByExternalID(ctx context.Context, req *connect_go.Request[v1.GetUserByExternalIDRequest]) (*connect_go.Response[v1.GetUserByExternalIDResponse], error) {
-	return c.getUserByExternalID.CallUnary(ctx, req)
-}
-
 // GetUserByEmail calls services.user.store.svc.v1.UserStoreSvc.GetUserByEmail.
 func (c *userStoreSvcClient) GetUserByEmail(ctx context.Context, req *connect_go.Request[v1.GetUserByEmailRequest]) (*connect_go.Response[v1.GetUserByEmailResponse], error) {
 	return c.getUserByEmail.CallUnary(ctx, req)
@@ -150,7 +135,6 @@ type UserStoreSvcHandler interface {
 	CreateUser(context.Context, *connect_go.Request[v1.CreateUserRequest]) (*connect_go.Response[v1.CreateUserResponse], error)
 	UpdateUsername(context.Context, *connect_go.Request[v1.UpdateUsernameRequest]) (*connect_go.Response[v1.UpdateUsernameResponse], error)
 	GetUserByID(context.Context, *connect_go.Request[v1.GetUserByIDRequest]) (*connect_go.Response[v1.GetUserByIDResponse], error)
-	GetUserByExternalID(context.Context, *connect_go.Request[v1.GetUserByExternalIDRequest]) (*connect_go.Response[v1.GetUserByExternalIDResponse], error)
 	GetUserByEmail(context.Context, *connect_go.Request[v1.GetUserByEmailRequest]) (*connect_go.Response[v1.GetUserByEmailResponse], error)
 	GetUserByUsername(context.Context, *connect_go.Request[v1.GetUserByUsernameRequest]) (*connect_go.Response[v1.GetUserByUsernameResponse], error)
 }
@@ -176,11 +160,6 @@ func NewUserStoreSvcHandler(svc UserStoreSvcHandler, opts ...connect_go.HandlerO
 		svc.GetUserByID,
 		opts...,
 	)
-	userStoreSvcGetUserByExternalIDHandler := connect_go.NewUnaryHandler(
-		UserStoreSvcGetUserByExternalIDProcedure,
-		svc.GetUserByExternalID,
-		opts...,
-	)
 	userStoreSvcGetUserByEmailHandler := connect_go.NewUnaryHandler(
 		UserStoreSvcGetUserByEmailProcedure,
 		svc.GetUserByEmail,
@@ -199,8 +178,6 @@ func NewUserStoreSvcHandler(svc UserStoreSvcHandler, opts ...connect_go.HandlerO
 			userStoreSvcUpdateUsernameHandler.ServeHTTP(w, r)
 		case UserStoreSvcGetUserByIDProcedure:
 			userStoreSvcGetUserByIDHandler.ServeHTTP(w, r)
-		case UserStoreSvcGetUserByExternalIDProcedure:
-			userStoreSvcGetUserByExternalIDHandler.ServeHTTP(w, r)
 		case UserStoreSvcGetUserByEmailProcedure:
 			userStoreSvcGetUserByEmailHandler.ServeHTTP(w, r)
 		case UserStoreSvcGetUserByUsernameProcedure:
@@ -224,10 +201,6 @@ func (UnimplementedUserStoreSvcHandler) UpdateUsername(context.Context, *connect
 
 func (UnimplementedUserStoreSvcHandler) GetUserByID(context.Context, *connect_go.Request[v1.GetUserByIDRequest]) (*connect_go.Response[v1.GetUserByIDResponse], error) {
 	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.user.store.svc.v1.UserStoreSvc.GetUserByID is not implemented"))
-}
-
-func (UnimplementedUserStoreSvcHandler) GetUserByExternalID(context.Context, *connect_go.Request[v1.GetUserByExternalIDRequest]) (*connect_go.Response[v1.GetUserByExternalIDResponse], error) {
-	return nil, connect_go.NewError(connect_go.CodeUnimplemented, errors.New("services.user.store.svc.v1.UserStoreSvc.GetUserByExternalID is not implemented"))
 }
 
 func (UnimplementedUserStoreSvcHandler) GetUserByEmail(context.Context, *connect_go.Request[v1.GetUserByEmailRequest]) (*connect_go.Response[v1.GetUserByEmailResponse], error) {

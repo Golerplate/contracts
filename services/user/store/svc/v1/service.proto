@@ -10,7 +10,6 @@ service UserStoreSvc {
     rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
     rpc UpdateUsername(UpdateUsernameRequest) returns (UpdateUsernameResponse);
     rpc GetUserByID(GetUserByIDRequest) returns (GetUserByIDResponse);
-    rpc GetUserByExternalID(GetUserByExternalIDRequest) returns (GetUserByExternalIDResponse);
     rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse);
     rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse);
 }

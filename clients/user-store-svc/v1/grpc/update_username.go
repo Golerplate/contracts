@@ -26,11 +26,10 @@ func (c *UserStoreSvcClient) UpdateUsername(ctx context.Context, id string, user
 	}
 
 	return &user_store_svc_v1_entities.User{
-		ID:         resp.Msg.GetUser().Id.GetValue(),
-		ExternalID: resp.Msg.GetUser().ExternalId.GetValue(),
-		Username:   resp.Msg.GetUser().Username.GetValue(),
-		Email:      resp.Msg.GetUser().Email.GetValue(),
-		CreatedAt:  resp.Msg.GetUser().CreatedAt.AsTime(),
-		UpdatedAt:  resp.Msg.GetUser().UpdatedAt.AsTime(),
+		ID:        resp.Msg.GetUser().Id.GetValue(),
+		Username:  resp.Msg.GetUser().Username.GetValue(),
+		Email:     resp.Msg.GetUser().Email.GetValue(),
+		CreatedAt: resp.Msg.GetUser().CreatedAt.AsTime(),
+		UpdatedAt: resp.Msg.GetUser().UpdatedAt.AsTime(),
 	}, nil
 }

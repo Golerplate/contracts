@@ -11,7 +11,6 @@ type UserStoreSvc interface {
 	CreateUser(ctx context.Context, req *user_store_svc_v1_entities.UserCreate) (*user_store_svc_v1_entities.User, error)
 	UpdateUsername(ctx context.Context, id, username string) (*user_store_svc_v1_entities.User, error)
 	GetUserByID(ctx context.Context, id string) (*user_store_svc_v1_entities.User, error)
-	GetUserByExternalID(ctx context.Context, externalID string) (*user_store_svc_v1_entities.User, error)
 	GetUserByEmail(ctx context.Context, email string) (*user_store_svc_v1_entities.User, error)
 	GetUserByUsername(ctx context.Context, username string) (*user_store_svc_v1_entities.User, error)
 }

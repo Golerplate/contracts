@@ -12,6 +12,6 @@ type User struct {
 }
 
 type UserCreate struct {
-	ExternalID string `json:"external_id"`
-	Email      string `json:"email"`
+	Username string `json:"username"`
+	Email    string `json:"email"`
 }
