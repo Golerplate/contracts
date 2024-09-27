@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package services.user.store.svc.v2;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+message User {
+    google.protobuf.StringValue id = 1;
+    google.protobuf.StringValue username = 2;
+    google.protobuf.StringValue email = 3;
+    google.protobuf.BoolValue is_banned = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+message CreateUserRequest {
+    google.protobuf.StringValue username = 1;
+    google.protobuf.StringValue email = 2;
+}
+
+message CreateUserResponse {
+    User user = 1;
+}
+
+message UpdateUsernameRequest {
+    google.protobuf.StringValue id = 1;
+    google.protobuf.StringValue username = 2;
+}
+
+message UpdateUsernameResponse {
+    User user = 1;
+}
+
+message GetUserByIDRequest {
+    google.protobuf.StringValue id = 1;
+}
+
+message GetUserByIDResponse {
+    User user = 1;
+}
+
+message GetUserByEmailRequest {
+    google.protobuf.StringValue email = 1;
+}
+
+message GetUserByEmailResponse {
+    User user = 1;
+}
+
+message GetUserByUsernameRequest {
+    google.protobuf.StringValue username = 1;
+}
+
+message GetUserByUsernameResponse {
+    User user = 1;
+}
